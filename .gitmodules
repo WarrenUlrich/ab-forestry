@@ -1,0 +1,9 @@
+[submodule "ab-pathfinding"]
+	path = ab-pathfinding
+	url = https://github.com/warrenulrich/ab-pathfinding
+[submodule "ab-common"]
+	path = ab-common
+	url = https://github.com/warrenulrich/ab-common
+[submodule "util-ai"]
+	path = util-ai
+	url = https://github.com/warrenulrich/util-ai
