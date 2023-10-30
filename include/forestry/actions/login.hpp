@@ -20,8 +20,11 @@ public:
       if (!Login::LoginPlayer()) {
         std::cout << "Failed, terminating\n";
         Terminate = true;
+        return;
       }
     }
+
+    std::cout << "Success.\n";
   }
 };
 } // namespace skiller

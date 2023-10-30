@@ -9,14 +9,14 @@
 
 #include "axe.hpp"
 #include "tree_type.hpp"
+#include "tree_location.hpp"
 
 namespace forestry {
 class base_state {
 public:
   std::optional<axe> current_axe;
-  std::optional<tree_type> current_tree_type;
-  std::optional<tree_instance> found_tree_instance;
-  
+  std::optional<tree_type> selected_tree_type;
+  std::optional<tree_cluster> tree_cluster;
 };
 
 template <typename T>

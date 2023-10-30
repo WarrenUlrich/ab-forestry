@@ -10,7 +10,7 @@ namespace forestry {
 class drop_logs : public util_ai::base_action<base_state> {
 public:
   double utility(const base_state &ws) override {
-    return 0.5;
+    return -1.0;
   }
 
   void execute(base_state &ws) override {

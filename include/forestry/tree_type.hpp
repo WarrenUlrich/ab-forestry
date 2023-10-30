@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <functional>
 
 namespace forestry {
 class tree_type {
@@ -55,12 +56,19 @@ public:
     return !(*this == other);
   }
 
-  static tree_type normal;
-  static tree_type oak;
+  static const tree_type normal;
+  static const tree_type oak;
+
+  static std::vector<std::reference_wrapper<const tree_type>> types;
 };
 
-tree_type tree_type::normal = tree_type("Tree", 1);
-tree_type tree_type::oak = tree_type("Oak tree", 15);
+const tree_type tree_type::normal = tree_type("Tree", 1);
+const tree_type tree_type::oak = tree_type("Oak tree", 15);
+
+std::vector<std::reference_wrapper<const tree_type>> tree_type::types = {
+  tree_type::normal,
+  tree_type::oak
+};
 
 } // namespace forestry
 

@@ -19,10 +19,6 @@ void Setup() {
   SetScriptInfo(Info);
 }
 
-forestry::base_state state = forestry::base_state();
-
-util_ai::agent<forestry::base_state> agent{};
-
 bool OnStart() {
   const std::filesystem::path user_path =
       getenv("USERPROFILE");
@@ -30,14 +26,14 @@ bool OnStart() {
                      "Collision Data" /
                      "collision_data.csv");
   pathfinding::load_collision_csv(data);
-
-  agent.add_action(std::make_unique<forestry::idle>());
-  agent.add_action(std::make_unique<forestry::login>());
   return true;
 }
 
+auto forestry_agent = forestry::agent();
+auto forestry_state = forestry::base_state();
+
 bool Loop() {
-  agent.decide_and_act(state);
+  forestry_agent.decide_and_act(forestry_state);
   return true;
 }
 
