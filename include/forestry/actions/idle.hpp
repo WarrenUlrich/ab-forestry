@@ -15,6 +15,8 @@ public:
 
   void execute(base_state &ws) override {
     std::cout << "Idling...\n";
+    if (Internal::GetFocused())
+      Antiban::MouseOffClient(true);
   }
 };
 } // namespace combat

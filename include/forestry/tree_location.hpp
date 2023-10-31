@@ -86,6 +86,42 @@ public:
   std::size_t get_tree_count() const {
     return trees.size();
   }
+
+
+  Area get_bounding_area() const {
+    if (trees.empty()) {
+      return Area(Tile(), Tile());
+    }
+
+    std::int32_t min_x = trees.front().location.X;
+    std::int32_t max_x = trees.front().location.X;
+    std::int32_t min_y = trees.front().location.Y;
+    std::int32_t max_y = trees.front().location.Y;
+    std::int32_t plane = trees.front().location.Plane;
+
+    for (const auto &tree : trees) {
+      min_x = std::min(min_x, tree.location.X);
+      max_x = std::max(max_x, tree.location.X);
+      min_y = std::min(min_y, tree.location.Y);
+      max_y = std::max(max_y, tree.location.Y);
+    }
+
+    return Area(Tile(min_x, max_y, plane), // TopLeft
+                Tile(max_x, min_y, plane)); // BottomRight
+  }
+
+  std::vector<Interactable::GameObject> get_objects() const {
+    std::vector<Interactable::GameObject> results;
+    for (const auto &tree : trees) {
+      const auto obj = GameObjects::Get(tree.location);
+      if (!obj || obj.GetName() != tree.type.name)
+        continue;
+      
+      results.emplace_back(obj);
+    }
+
+    return results;
+  }
 };
 
 // clang-format off

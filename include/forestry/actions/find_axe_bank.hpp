@@ -80,6 +80,9 @@ public:
       return;
     }
 
+    while(Bank::IsOpen())
+      Bank::Close();
+    
     std::cout << "Found axe: " << ws.current_axe->name
               << '\n';
   }
